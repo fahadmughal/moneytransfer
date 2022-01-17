@@ -45,7 +45,7 @@
     
 # Focused Area
     Scalable Architecture and simple design
-#Notes
+# Notes
     Default data will be pushed automatically at the startup of application
     you dont need to push any data, just get the data from /accounts/all
     endpoint and start the transactions.
