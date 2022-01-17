@@ -17,7 +17,9 @@
     1- Import the project as a maven project.
     2- Clean and build the project through maven.
     3- Run the MoneyTransferApplication.java for starting the project.
-    4- Default data will be populated automatically in in-memory DB
+    4- Default data will be pushed automatically at the startup of application
+    you dont need to push any data, just get the data from /accounts/all
+    endpoint and start the transactions.
     Now Project is up and runing.
 # Technologies Used
 
@@ -45,7 +47,3 @@
     
 # Focused Area
     Scalable Architecture and simple design
-# Notes
-    Default data will be pushed automatically at the startup of application
-    you dont need to push any data, just get the data from /accounts/all
-    endpoint and start the transactions.
