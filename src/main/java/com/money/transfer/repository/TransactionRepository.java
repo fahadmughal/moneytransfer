@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Date;
 
 public interface TransactionRepository extends CrudRepository<TransactionDetails, Long> {
-    @Query(value = "SELECT SUM(txn.txnAomunt) FROM TransactionDetails txn WHERE txn.sourceAccountNo =:accountNo AND txn.txnDate =:currentDate")
+    @Query(value = "SELECT SUM(txn.txnAmount) FROM TransactionDetails txn WHERE txn.sourceAccountNo =:accountNo AND txn.txnDate =:currentDate")
     Double sumOfDailyTxnAmountByAccountNo(String accountNo, Date currentDate);
 }

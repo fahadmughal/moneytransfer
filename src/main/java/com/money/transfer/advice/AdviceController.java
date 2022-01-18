@@ -1,10 +1,7 @@
 package com.money.transfer.advice;
 
 import com.money.transfer.dto.ErrorDto;
-import com.money.transfer.exception.AccountStatusException;
-import com.money.transfer.exception.DailyLimitExceededException;
-import com.money.transfer.exception.InSufficientBalanceException;
-import com.money.transfer.exception.PayLaterDateNotFoundException;
+import com.money.transfer.exception.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +38,12 @@ public class AdviceController extends ResponseEntityExceptionHandler {
             PayLaterDateNotFoundException ex, WebRequest request) {
 
         return new ResponseEntity<>(new ErrorDto("Pld-01", ex.getMessage(), LocalDateTime.now()), HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(CustomerNotFoundException.class)
+    public ResponseEntity<Object> handleCustomerNotFoundException(
+            CustomerNotFoundException ex, WebRequest request) {
+
+        return new ResponseEntity<>(new ErrorDto("cst-01", ex.getMessage(), LocalDateTime.now()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)

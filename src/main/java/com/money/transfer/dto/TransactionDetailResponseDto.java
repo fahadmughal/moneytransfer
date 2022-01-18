@@ -5,24 +5,18 @@ import lombok.Setter;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Getter
 @Setter
-public class TransactionRequestDto {
-    @NotNull
+public class TransactionDetailResponseDto {
+    private String txnRefNo;
     private String sourceAccountNo;
-    @NotNull
     private String destinationAccountNo;
-    @NotNull
-    private String customerId;
-    @NotNull
     private String txnCurrency;
-    @NotNull
     private Double txnAmount;
     @Temporal(TemporalType.DATE)
     private Date txnDate;
-    @NotNull
     private String txnType;
+    private String status;
 }

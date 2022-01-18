@@ -3,6 +3,7 @@ package com.money.transfer;
 import com.money.transfer.model.*;
 import com.money.transfer.repository.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @SpringBootApplication
@@ -45,7 +47,7 @@ public class MoneyTransferApplication {
                     5000.00, accountTypeRepository.findById(1L).get(), accountStatusRepository.findById(4L).get()));
             aliAccountDetails.add(new AccountDetails(2L, "Ali Saving Account Title", "012313134", "USD", new Date(), new Date(), 10000.0, 10000.0,
                     5000.00, accountTypeRepository.findById(2L).get(), accountStatusRepository.findById(2L).get()));
-            customerProfileRepository.save(new CustomerProfile(1L, "Ali First Name", "Ali Last Name", "Ali's primary address",
+            customerProfileRepository.save(new CustomerProfile(1L, RandomStringUtils.randomAlphanumeric(8), "Ali First Name", "Ali Last Name", "Ali's primary address",
                     "Ali's secondary address", "+971552321112", "+972332212223",
                     customerTypeRepository.findById(1L).get(), aliAccountDetails));
 
@@ -53,7 +55,7 @@ public class MoneyTransferApplication {
             List<AccountDetails> ahmedAccountDetails = new ArrayList<>();
             ahmedAccountDetails.add(new AccountDetails(3L, "Ahmed Current Account Title", "01245464", "USD", new Date(), new Date(), 20000.0, 20000.0,
                     5000.00, accountTypeRepository.findById(1L).get(), accountStatusRepository.findById(4L).get()));
-            customerProfileRepository.save(new CustomerProfile(2L, "Ahmed First Name", "Ahmed Last Name", "Ahmed's primary address",
+            customerProfileRepository.save(new CustomerProfile(2L, RandomStringUtils.randomAlphanumeric(8), "Ahmed First Name", "Ahmed Last Name", "Ahmed's primary address",
                     "Ahmed's secondary address", "+971552321112", "+972332212223",
                     customerTypeRepository.findById(2L).get(), ahmedAccountDetails));
 
@@ -61,7 +63,7 @@ public class MoneyTransferApplication {
             List<AccountDetails> johnAccountDetails = new ArrayList<>();
             johnAccountDetails.add(new AccountDetails(4L, "John Current Account Title", "013564839", "AED", new Date(), new Date(),5000.0, 5000.0,
                     5000.00, accountTypeRepository.findById(1L).get(), accountStatusRepository.findById(1L).get()));
-            customerProfileRepository.save(new CustomerProfile(3L, "John First Name", "John Last Name", "John's primary address",
+            customerProfileRepository.save(new CustomerProfile(3L, RandomStringUtils.randomAlphanumeric(8), "John First Name", "John Last Name", "John's primary address",
                     "John's secondary address", "+971552321112", "+972332212223",
                     customerTypeRepository.findById(1L).get(), johnAccountDetails));
         };
