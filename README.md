@@ -27,6 +27,7 @@
     2- Swagger open api
     3- Lombok
     4- H2 in memory DB
+    5- Spring data jpa
 
 # URL for api docs/testing
     http://localhost:8080/swagger-ui.html
@@ -39,11 +40,13 @@
       "txnCurrency": "USD",
       "txnAomunt": 1000,
       "txnDate": "2022-01-17T18:39:34.708Z",
-      "txnType": "PayNow"
+      "txnType": "PayNow" //Only accepted: PayNow or PayLater
     }
     
     GET: http://localhost:8080/accounts/all
     GET: http://localhost:8080/transaction/all
+    GET: http://localhost:8080/customer/all
     
 # Focused Area
+    Modern Technologies
     Scalable Architecture and simple design

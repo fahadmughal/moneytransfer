@@ -97,11 +97,15 @@ public class TransactionServiceImpl implements TransactionService {
 
     /** TODO perform pre txn validations*/
     private void preTxnValidations(TransactionRequestDto transactionDetails){
+        transactionValidator.customerDoesNotExistCheck(transactionDetails);
+        transactionValidator.doesAccountBelongsToCustomerCheck(transactionDetails);
         transactionValidator.accountStatusCheck(transactionDetails);
-        transactionValidator.inSufficientBalanceCheck(transactionDetails);
-        transactionValidator.dailyLimitCheck(transactionDetails);
         if (transactionDetails.getTxnType().equals(TransactionType.PayLater.name())){
             transactionValidator.payLaterDateCheck(transactionDetails);
+        }
+        else {
+            transactionValidator.inSufficientBalanceCheck(transactionDetails);
+            transactionValidator.dailyLimitCheck(transactionDetails);
         }
     }
 

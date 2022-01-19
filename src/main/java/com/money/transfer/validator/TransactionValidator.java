@@ -3,11 +3,9 @@ package com.money.transfer.validator;
 import com.money.transfer.dto.TransactionRequestDto;
 import com.money.transfer.enums.AccountStatusEnum;
 import com.money.transfer.enums.TransactionType;
-import com.money.transfer.exception.AccountStatusException;
-import com.money.transfer.exception.DailyLimitExceededException;
-import com.money.transfer.exception.InSufficientBalanceException;
-import com.money.transfer.exception.PayLaterDateNotFoundException;
+import com.money.transfer.exception.*;
 import com.money.transfer.model.AccountDetails;
+import com.money.transfer.model.CustomerProfile;
 import com.money.transfer.repository.AccountDetailsRepository;
 import com.money.transfer.repository.CustomerProfileRepository;
 import com.money.transfer.repository.TransactionRepository;
@@ -22,6 +20,7 @@ public class TransactionValidator {
     private final AccountDetailsRepository accountDetailsRepository;
     private final CustomerProfileRepository customerProfileRepository;
 
+
     public TransactionValidator(TransactionRepository transactionRepository, AccountDetailsRepository accountDetailsRepository,
                                 CustomerProfileRepository customerProfileRepository) {
         this.transactionRepository = transactionRepository;
@@ -29,10 +28,17 @@ public class TransactionValidator {
         this.customerProfileRepository = customerProfileRepository;
     }
 
+    /** TODO perform doesAccountBelongsToCustomerCheck*/
+    public void doesAccountBelongsToCustomerCheck(TransactionRequestDto transactionDetails){
+        CustomerProfile customerProfile = customerProfileRepository.findByCustomerId(transactionDetails.getCustomerId());
+        if(!accountDetailsRepository.existAccountForCustomerOrNot(customerProfile.getId(), transactionDetails.getSourceAccountNo())){
+            throw new AccountNotFoundException(transactionDetails.getSourceAccountNo(), transactionDetails.getCustomerId());
+        }
+    }
     /** TODO perform customerDoesNotExistCheck*/
     public void customerDoesNotExistCheck(TransactionRequestDto transactionDetails){
-        if(!customerProfileRepository.existsCustomerProfileByCustomerId(transactionDetails.getCustomerId())){
-            throw new PayLaterDateNotFoundException();
+        if(!customerProfileRepository.existsByCustomerId(transactionDetails.getCustomerId())){
+            throw new CustomerNotFoundException(transactionDetails.getCustomerId());
         }
     }
     /** TODO perform payLaterDateCheck*/

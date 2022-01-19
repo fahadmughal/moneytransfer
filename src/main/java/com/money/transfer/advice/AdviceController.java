@@ -43,7 +43,13 @@ public class AdviceController extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleCustomerNotFoundException(
             CustomerNotFoundException ex, WebRequest request) {
 
-        return new ResponseEntity<>(new ErrorDto("cst-01", ex.getMessage(), LocalDateTime.now()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(new ErrorDto("cst-01", ex.getMessage(), LocalDateTime.now()), HttpStatus.UNAUTHORIZED);
+    }
+    @ExceptionHandler(AccountNotFoundException.class)
+    public ResponseEntity<Object> handleAccountNotFoundException(
+            AccountNotFoundException ex, WebRequest request) {
+
+        return new ResponseEntity<>(new ErrorDto("act-01", ex.getMessage(), LocalDateTime.now()), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(Exception.class)
