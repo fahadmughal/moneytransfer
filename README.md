@@ -37,6 +37,7 @@
     {
       "sourceAccountNo": "0919191919",
       "destinationAccountNo": "01245464",
+      "customerId": "csId1",
       "txnCurrency": "USD",
       "txnAomunt": 1000,
       "txnDate": "2022-01-17T18:39:34.708Z",
